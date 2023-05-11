@@ -27,10 +27,14 @@ public class CarMovement : MonoBehaviour
             transform.eulerAngles = angles;
             transform.position = position;
         }
-        else if (position.x > 499)
+        if (position.x > 545)
         {
+            angles.y = 0;
+
+       
             position.z += speed;
             transform.position = position;
+            transform.eulerAngles = angles;
         }
 
         if (position.z < 275)
