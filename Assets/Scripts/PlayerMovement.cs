@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3[] checkPoints;
     public float speed= 1;
     public int targetIndex;
+    
+    [SerializeField] private DriveMode Mode = DriveMode.Automatically;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +20,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Vector3 targetPosition = checkPoints[targetIndex];
-        if ((transform.position-targetPosition).magnitude > 1)
-        {
-            MoveTo(targetPosition);
-        }
-        else
-        {
-            targetIndex++;
-            if (targetIndex >= 4) targetIndex = 0;
-        }
+            if ((transform.position - targetPosition).magnitude > 1)
+            {
+                MoveTo(targetPosition);
+            }
+            else
+            {
+                targetIndex++;
+                if (targetIndex >= 4) targetIndex = 0;
+            }
+        
     }
     void MoveTo(Vector3 target)
     {
@@ -58,4 +61,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    void MoveByKeyBoard()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position = transform.position + (transform.forward * speed * Time.deltaTime);
+        }
+    }
+    
 }
